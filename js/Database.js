@@ -100,20 +100,15 @@ Database.prototype.CallBack = function(_CallBack,_Parametro,_Estado){
 }
 
 Database.prototype.Open =  function(){
-    var url = window.location.pathname;
-    var filename = url.substring(url.lastIndexOf('/')+1);
-    if(filename != 'Tab.php'){
-        this.ShowSpinner('Consultando Información...');
-    }
     var _this = this;
     return $.getJSON( this._FileJsonEsquema)
      .done((_Json)=> {
+
         this._DataVersion   = _Json.DataVersion;
         this._DbName        = _Json.DbName;
         this._Schema        = _Json;
         this._Conexion      = this._IndexedBD.open(this._DbName, _Json.Version);
-        this._Conexion.onsuccess = function (event) {
-            
+        this._Conexion.onsuccess = function (event) {            
             if(localStorage.getItem("DB_JSON_Version") != _Json.Version){
                 this._IsOutOfDate = true;
                 window.localStorage.setItem("DB_JSON_Version_TMP", _Json.Version);
@@ -126,6 +121,7 @@ Database.prototype.Open =  function(){
             if(this._IsOutOfDate==true){
                 this.ImportDatabase();
                 this._IsOutOfDate=false;
+                
             }
             else{
                 this.HideSpinner();
@@ -177,6 +173,7 @@ Database.prototype.ImportJson = function (_tableNumber,_rowNumber){
             if(item == rows){
                 this.HideSpinner();
                 localStorage.setItem("DB_JSON_Version", localStorage.getItem("DB_JSON_Version_TMP"));
+
             }
             else{
                 if( (_rowNumber + 1) == parseInt(localStorage.getItem("DB_JSON_Lenght_"+this._DataJson['Tabla'][_tableNumber].Name), 10) ){
@@ -195,6 +192,7 @@ Database.prototype.ImportJson = function (_tableNumber,_rowNumber){
             this.HideSpinner();
             localStorage.setItem("DB_JSON_Version", localStorage.getItem("DB_JSON_Version_TMP"));
             localStorage.setItem("DB_JSON_DataVersion", this._DataVersion);
+            location.reload();
             
         }
     };     
@@ -424,7 +422,7 @@ Database.prototype.DeleteAll = function (_TableName,_CallBack) {
 
 Database.prototype.CreateTable = function(_event, _schema){
     var db = _event.target.result;
-    var objectStore = this.createObjectStore(_schema['Name'], { keyPath: _schema['Index'] });
+    var objectStore = db.createObjectStore(_schema['Name'], { keyPath: _schema['Index'] });
     for (var i = 0, len = _schema['Schema'].length; i < len; i++) {
         objectStore.createIndex(_schema['Schema'][i]['Column'],_schema['Schema'][i]['Column'], { unique : _schema['Schema'][i]['Unique'] });
     }
@@ -432,5 +430,5 @@ Database.prototype.CreateTable = function(_event, _schema){
 
 Database.prototype.DeleteTable = function(_event, _table){
     var db = _event.target.result;
-    this.deleteObjectStore(_table);
+    db.deleteObjectStore(_table);
 };
