@@ -1,7 +1,9 @@
 # Georeferenia-INEGI
 Componente para la selección de un domicilio en cascada en base a los catalogos de INEGI, utilizando base de datos local 
 <br><br>
+ ```
 let DomicilioParticular =  new Domicilio("#ContenedorDomicilio");
+ ```
 <br><br>
 ContenedorDomicilio debe tener la clase DomRender, para que automaticamente genere inputs dentro de el elemento.
 <br><br>
