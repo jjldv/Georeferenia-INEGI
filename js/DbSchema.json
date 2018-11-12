@@ -1,0 +1,87 @@
+{
+    "DbName": "Pipo",
+    "DataVersion": 1,
+    "Version":110,
+    "Tabla":[
+        {
+        "Name":"CORE_CatVialidad",
+        "Index" : 
+            [
+                "id"
+            ],
+        "Schema":
+            [
+                { "Column":"id", "Unique":true},
+                { "Column":"text", "Unique":true}
+            ]
+        },
+        {
+        "Name":"CORE_CatPais",
+        "Index" : 
+            [
+                "id"
+            ],
+        "Schema":
+            [
+                { "Column":"id", "Unique":true},
+                { "Column":"text", "Unique":false}
+            ]
+        },
+        {
+        "Name":"CORE_CatEstado",
+        "Index" : 
+            [
+                "IdCatPais",
+                "id"
+            ],
+        "Schema":
+            [
+                { "Column":"IdCatPais", "Unique":false},
+                { "Column":"id", "Unique":false},
+                { "Column":"text", "Unique":false}
+            ]
+        },
+        {
+        "Name":"CORE_CatMunicipio",
+        "Index" : 
+            [
+                "IdCatEstado",
+                "id"
+            ],
+        "Schema":
+            [
+                { "Column":"IdCatEstado", "Unique":false},
+                { "Column":"id", "Unique":false},
+                { "Column":"text", "Unique":false}
+            ]
+        },
+        {
+        "Name":"CORE_CatLocalidad",
+        "Index" : 
+            [
+                "IdCatMunicipio",
+                "id"
+            ],
+        "Schema":
+            [
+                { "Column":"IdCatMunicipio", "Unique":false},
+                { "Column":"id", "Unique":false},
+                { "Column":"text", "Unique":false}
+            ]
+        },
+        {
+        "Name":"CORE_CatColonia",
+        "Index" : 
+            [
+                "IdCatLocalidad",
+                "id"
+            ],
+        "Schema":
+            [
+                { "Column":"IdCatLocalidad", "Unique":false},
+                { "Column":"id", "Unique":false},
+                { "Column":"text", "Unique":false}
+            ]
+        }
+    ]
+}
