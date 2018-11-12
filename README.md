@@ -1,5 +1,7 @@
 # Georeferenia-INEGI
 Componente para la selección de un domicilio en cascada en base a los catalogos de INEGI, utilizando base de datos local 
+
+En el primer uso se instalara la base de datos local para su uso, paciencia!
 <br><br>
  ```
 let DomicilioParticular =  new Domicilio("#ContenedorDomicilio");
