@@ -1,7 +1,7 @@
 /*METODO DE NOMBRE DE LA CLASE Y CONSTRUCTOR*/
 function Database() {
-    this._FileJsonEsquema = "js/DbSchema.json"
-    this._FileJsonData = "js/DbData.json"
+    this._FileJsonEsquema = "{{ site.baseurl}}js/DbSchema.json"
+    this._FileJsonData = "{{ site.baseurl}}js/DbData.json"
     this._DataVersion;
     this._DataJson;
     this._NumberOfTables;
