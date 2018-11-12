@@ -248,7 +248,7 @@ function Domicilio(_wraper,_name = 'Domicilio',_level = 'NumeroInterior') {
         }.bind(this));
         if(Render)
             this.Set(this.Id ,this.IdCatPais, this.IdCatEstado, this.IdCatMunicipio, this.IdCatLocalidad, this.IdCatColonia,this.IdCatVialidad ,this.Calle, this.NumeroInterior,this.NumeroExterior,this.CodigoPostal);
-    },500);
+    },1000);
 }
 Domicilio.prototype.Reset = function (){
  this.Set(this.IdDef ,this.IdCatPaisDef, this.IdCatEstadoDef, this.IdCatMunicipioDef, this.IdCatLocalidadDef, this.IdCatColoniaDef,this.IdCatVialidadDef ,this.CalleDef, this.NumeroInteriorDef,this.NumeroExteriorDef,this.CodigoPostalDef);   
